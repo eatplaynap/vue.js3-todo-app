@@ -10,7 +10,15 @@
 <body>
 <div id="todo-list-app">
     <h1>My Todos</h1>
-    <h2>{{ tasks[0].text }}</h2>
+    <ul>
+        <li v-for="(task, index) in tasks">{{ task }}
+            <span @click="deleteTask(index)">[x]</span>
+        </li>
+    </ul>
+    <form @submit.prevent="addTask">
+        <input type="text" v-model="newTask">
+        <input type="submit" value="Add">
+    </form>
 </div>
 <script src="https://unpkg.com/vue@next"></script>
 <script src="main.js"></script>
