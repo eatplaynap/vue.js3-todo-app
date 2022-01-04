@@ -1,0 +1,65 @@
+body {
+    background: #ddd;
+    max-width: 960px;
+}
+
+#todo-list-app {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#todo-list-app h1 {
+    margin: 0 auto;
+    color: darkslategray;
+}
+
+#todo-list-app ul {
+    padding: 0;
+    list-style: none;
+}
+
+#todo-list-app li {
+    background: #fff;
+    margin: 20px auto;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete-btn {
+    background: orange;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-right: 5px;
+}
+
+.edit-btn {
+    background: cadetblue;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+form {
+    background: darkslategray;
+    margin: 20px auto;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-btn {
+    background: indianred;
+    padding: 5px 10px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    font-size: 15px;
+}
+
+input {
+    width :85%;
+    height: 30px;
+    border: none;
+}
