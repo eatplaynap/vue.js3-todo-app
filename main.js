@@ -47,5 +47,3 @@ const app = Vue.createApp({
 })
 
 app.mount('#todo-list-app')
-
-
