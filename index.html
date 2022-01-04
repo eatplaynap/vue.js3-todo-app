@@ -11,13 +11,15 @@
 <div id="todo-list-app">
     <h1>My Todos</h1>
     <ul>
-        <li v-for="(task, index) in tasks">{{ task }}
+        <li v-for="(task, index) in tasks" :key="task.id">{{ task }}
             <span @click="deleteTask(index)">[x]</span>
+            <span @click="editTask(index)">[o]</span>
         </li>
     </ul>
-    <form @submit.prevent="addTask">
+    <form @submit.prevent="setTask">
         <input type="text" v-model="newTask">
-        <input type="submit" value="Add">
+        <span class="input-group-btn"><button class="btn btn-primary">{{changeButtonText}}</button></span>
+<!--        <input type="submit" :value="changeButtonText" @click="setTask()">-->
     </form>
 </div>
 <script src="https://unpkg.com/vue@next"></script>

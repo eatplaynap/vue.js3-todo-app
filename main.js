@@ -1,41 +1,51 @@
-const taskStorage = {
-  fetch() {
-    const tasks = JSON.parse(localStorage.getItem('task') || '[]' )
-    tasks.forEach((task, index) => {
-      task.id = index
-    })
-    taskStorage.uid = tasks.length
-    return tasks
-  },
-  save(tasks) {
-    localStorage.setItem('task', JSON.stringify(tasks))
-  }
-}
-
 const app = Vue.createApp({
   data() {
     return {
       newTask: '',
-      tasks: taskStorage.fetch()
+      editIndex: -1,
+      tasks: []
     }
   },
   watch: {
     tasks: {
       handler(tasks) {
-        taskStorage.save(tasks)
+        localStorage.setItem('tasks', JSON.stringify(this.tasks))
       },
       deep: true
     }
   },
+  mounted() {
+    this.tasks = JSON.parse(localStorage.getItem('tasks')) || []
+  },
   methods: {
-    addTask() {
-      this.tasks.push(this.newTask)
+    setTask() {
+      if(this.editIndex === -1) {
+        this.tasks.push(this.newTask)
+      } else {
+        this.tasks.splice(this.editIndex, 1, this.newTask)
+      }
+      this.cancel()
+    },
+    cancel() {
       this.newTask = ''
+      this.editIndex = -1
     },
     deleteTask(index){
       this.tasks.splice(index, 1)
+    },
+    editTask(index){
+      this.editIndex = index
+      this.newTask = this.tasks[index]
+      this.$refs.editor.focus()
+    }
+  },
+  computed: {
+    changeButtonText() {
+      return this.editIndex === -1 ? "追加" : "編集";
     }
   }
 })
 
 app.mount('#todo-list-app')
+
+
