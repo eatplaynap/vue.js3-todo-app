@@ -1,8 +1,8 @@
 const app = Vue.createApp({
   data() {
     return {
-      newTask: '',
-      editIndex: -1,
+      newTask: undefined,
+      editIndex: null,
       tasks: []
     }
   },
@@ -19,7 +19,7 @@ const app = Vue.createApp({
   },
   methods: {
     setTask() {
-      if(this.editIndex === -1) {
+      if(this.editIndex === null) {
         this.tasks.push(this.newTask)
       } else {
         this.tasks.splice(this.editIndex, 1, this.newTask)
@@ -27,8 +27,8 @@ const app = Vue.createApp({
       this.cancel()
     },
     cancel() {
-      this.newTask = ''
-      this.editIndex = -1
+      this.newTask = undefined
+      this.editIndex = null
     },
     deleteTask(index){
       this.tasks.splice(index, 1)
@@ -41,7 +41,7 @@ const app = Vue.createApp({
   },
   computed: {
     changeButtonText() {
-      return this.editIndex === -1 ? "追加" : "編集";
+      return this.editIndex === null ? "追加" : "編集";
     }
   }
 })
