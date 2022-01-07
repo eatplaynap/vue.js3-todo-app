@@ -20,7 +20,7 @@
         </li>
     </ul>
     <form @submit.prevent="setTask">
-        <input type="text" v-model="newTask">
+        <input type="text" v-model="newTask" ref="editor">
         <button class="input-btn">{{changeButtonText}}</button>
     </form>
 </div>
