@@ -4,7 +4,7 @@ const app = Vue.createApp({
       newTask: undefined,
       editIndex: null,
       tasks: [],
-      nextId: 0
+      nextId: undefined
     }
   },
   watch: {
@@ -17,12 +17,13 @@ const app = Vue.createApp({
   },
   mounted() {
     this.tasks = JSON.parse(localStorage.getItem('tasks')) || []
+    this.nextId = this.tasks[this.tasks.length-1]?.id || 0
   },
   methods: {
     setTask() {
-      if(this.editIndex === null) {
+      if(!this.editIndex) {
         this.tasks.push({
-          id: this.nextId++,
+          id: ++this.nextId,
           title: this.newTask
         })
       } else {
@@ -48,7 +49,7 @@ const app = Vue.createApp({
   },
   computed: {
     changeButtonText() {
-      return this.editIndex === null ? "追加" : "編集";
+      return !this.editIndex ? "追加" : "編集";
     }
   }
 })
