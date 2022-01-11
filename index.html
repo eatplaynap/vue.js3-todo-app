@@ -12,7 +12,7 @@
 <div id="todo-list-app">
     <h1>My Todos</h1>
     <ul>
-        <li v-for="(task, index) in tasks" :key="index">{{ task }}
+        <li v-for="(task, index) in tasks" :key="task.id">{{ task.title }}
             <span class="buttons">
                 <span class="delete-btn" @click="deleteTask(index)">削除</span>
                 <span class="edit-btn" @click="editTask(index)">編集</span>

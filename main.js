@@ -3,7 +3,8 @@ const app = Vue.createApp({
     return {
       newTask: undefined,
       editIndex: null,
-      tasks: []
+      tasks: [],
+      nextId: 0
     }
   },
   watch: {
@@ -20,7 +21,9 @@ const app = Vue.createApp({
   methods: {
     setTask() {
       if(this.editIndex === null) {
-        this.tasks.push(this.newTask)
+        this.tasks.push({
+          id: this.nextId++,
+          title: this.newTask})
       } else {
         this.tasks.splice(this.editIndex, 1, this.newTask)
       }
