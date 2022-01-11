@@ -23,9 +23,13 @@ const app = Vue.createApp({
       if(this.editIndex === null) {
         this.tasks.push({
           id: this.nextId++,
-          title: this.newTask})
+          title: this.newTask
+        })
       } else {
-        this.tasks.splice(this.editIndex, 1, this.newTask)
+        this.tasks.splice(this.editIndex, 1, {
+          id: this.tasks[this.editIndex].id,
+          title: this.newTask
+        })
       }
       this.cancel()
     },
@@ -38,7 +42,7 @@ const app = Vue.createApp({
     },
     editTask(index){
       this.editIndex = index
-      this.newTask = this.tasks[index]
+      this.newTask = this.tasks[index].title
       this.$refs.editor.focus()
     }
   },
